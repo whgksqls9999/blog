@@ -14,8 +14,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install expect
-          echo git diff-tree --no-commit-id --name-only -r HEAD >> $TEST
-          cat $TEST
           cat git diff-tree --no-commit-id --name-only -r HEAD
       
       - name: Checkout repository
