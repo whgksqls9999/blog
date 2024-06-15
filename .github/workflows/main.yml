@@ -33,7 +33,6 @@ jobs:
         if: ${{ contains(env.changed_files, 'blog/') }}
         working-directory: apps/blog
         run: |
-          pnpm install
           npx turbo run build
           
       - name: Deploy Blog if changed
@@ -76,7 +75,6 @@ jobs:
         if: ${{ contains(env.changed_files, 'lab/') }}
         working-directory: apps/lab
         run: |
-          pnpm install
           npx turbo run build
       
       - name: Deploy Lab if changed
