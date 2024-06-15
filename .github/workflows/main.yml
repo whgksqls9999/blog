@@ -36,6 +36,10 @@ jobs:
           spawn vercel --prod --token $VERCEL_TOKEN
           expect "Set up and deploy"
           send "Y\r"
+          expect "abcd"
+          send "\r"
+          expect "abcd"
+          send "Y\r"
           expect eof
           EOF
         
@@ -68,4 +72,17 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_SCOPE: ${{ secrets.VERCEL_PROJECTID_LAB }}
         run: |
-          vercel --prod --token $VERCEL_TOKEN
+          expect << EOF
+          spawn vercel --prod --token $VERCEL_TOKEN
+          expect "Set up and deploy"
+          send "Y\r"
+          expect "abcd"
+          send "\r"
+          expect "abcd"
+          send "n\r"
+          expect "abcd"
+          send "Y\r"
+          expect "abcd"
+          send "blog-lab\r"
+          expect eof
+          EOF
