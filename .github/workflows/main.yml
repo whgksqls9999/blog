@@ -28,7 +28,8 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_SCOPE: ${{ secrets.VERCEL_PROJECTID_BLOG }}
         run: |
-          vercel --prod --token $VERCEL_TOKEN --yes -p blog
+          vercel --prod --token $VERCEL_TOKEN
+          y
           
   deploy-lab:
     runs-on: ubuntu-latest
@@ -54,4 +55,5 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_SCOPE: ${{ secrets.VERCEL_PROJECTID_LAB }}
         run: |
-          vercel --prod --token $VERCEL_TOKEN --yes -p blog-lab
+          vercel --prod --token $VERCEL_TOKEN
+          y
