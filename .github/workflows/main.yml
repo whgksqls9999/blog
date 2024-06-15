@@ -29,6 +29,7 @@ jobs:
           npx turbo run build
           
       - name: Deploy Blog if changed
+        if: success()
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -68,9 +69,9 @@ jobs:
           npx turbo run build
       
       - name: Deploy Lab if changed
+        if: success()
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_SCOPE: ${{ secrets.VERCEL_PROJECTID_LAB }}
         run: |
           expect << EOF
           spawn vercel --prod --token $VERCEL_TOKEN
