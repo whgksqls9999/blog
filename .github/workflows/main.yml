@@ -32,7 +32,7 @@ jobs:
           npx turbo run build
           
       - name: Deploy Blog if changed
-        if: success()
+        if: ${{ contains(env.changed_files, 'blog/') }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -73,7 +73,7 @@ jobs:
           npx turbo run build
       
       - name: Deploy Lab if changed
-        if: success()
+        if: ${{ contains(env.changed_files, 'lab/') }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
