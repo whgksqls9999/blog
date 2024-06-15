@@ -79,6 +79,7 @@ jobs:
       - name: Install pnpm
         if: ${{ contains(env.changed_files, 'apps/lab/') }}
         run: |
+          pnpm install
           npm install -g pnpm
           
       - name: Build lab
