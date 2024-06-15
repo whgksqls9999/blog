@@ -9,39 +9,38 @@ jobs:
   deploy-blog:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Install expect
-        run: |
-          sudo apt-get update
-          sudo apt-get install expect
-
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
-      
+    steps:      
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
 
-        
       - name: Determine changes
         id: determine_changes
         run: |
           changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
           echo "changed_files=$changed_files" >> $GITHUB_ENV
-          git diff-tree --no-commit-id --name-only -r HEAD > changes.txt
-          cat changes.txt
+
+      - name: Install expect
+        if: ${{ contains(env.changed_files, 'apps/blog/') }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install expect
+
+      - name: Install pnpm
+        if: ${{ contains(env.changed_files, 'apps/blog/') }}
+        run: |
+          npm install -g pnpm
           
       - name: Build Blog
-        if: ${{ contains(env.changed_files, 'blog/') }}
+        if: ${{ contains(env.changed_files, 'apps/blog/') }}
         working-directory: apps/blog
         run: |
           pnpm install
           npx turbo run build
           
       - name: Deploy Blog if changed
-        if: ${{ contains(env.changed_files, 'blog/') }}
+        if: ${{ contains(env.changed_files, 'apps/blog/') }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -60,11 +59,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install expect
-        run: |
-          sudo apt-get update
-          sudo apt-get install expect
-
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
@@ -75,15 +69,26 @@ jobs:
         run: |
           changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
           echo "changed_files=$changed_files" >> $GITHUB_ENV
+
+      - name: Install expect
+        if: ${{ contains(env.changed_files, 'apps/blog/') }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install expect
+
+      - name: Install pnpm
+        if: ${{ contains(env.changed_files, 'apps/blog/') }}
+        run: |
+          npm install -g pnpm
           
       - name: Build lab
-        if: ${{ contains(env.changed_files, 'lab/') }}
+        if: ${{ contains(env.changed_files, 'apps/lab/') }}
         working-directory: apps/lab
         run: |
           npx turbo run build
       
       - name: Deploy Lab if changed
-        if: ${{ contains(env.changed_files, 'lab/') }}
+        if: ${{ contains(env.changed_files, 'apps/lab/') }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
