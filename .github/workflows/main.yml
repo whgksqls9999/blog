@@ -21,7 +21,7 @@ jobs:
         working-directory: apps/blog
         run: |
           pnpm install
-          pnpm build
+          npx turbo run build
           
       - name: Deploy Blog if changed
         env:
@@ -47,7 +47,7 @@ jobs:
         working-directory: apps/lab
         run: |
           pnpm install
-          pnpm build
+          npx turbo run build
       
       - name: Deploy Lab if changed
         env:
