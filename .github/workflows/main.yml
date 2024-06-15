@@ -29,11 +29,8 @@ jobs:
           VERCEL_SCOPE: ${{ secrets.VERCEL_PROJECTID_BLOG }}
         run: |
           vercel --prod --token $VERCEL_TOKEN
-      
-      - name: Setting Yes
-        run: Y
-      
-          
+          echo "Y"
+        
   deploy-lab:
     runs-on: ubuntu-latest
     steps:
