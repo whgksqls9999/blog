@@ -34,11 +34,11 @@ jobs:
         run: |
           expect << EOF
           spawn vercel --prod --token $VERCEL_TOKEN
-          expect "Set up and deploy"
+          expect "Set up and deploy “~/work/blog/blog”? (Y/n)"
           send "Y\r"
-          expect "abcd"
+          expect "Which scope do you want to deploy to? (Use arrow keys)"
           send "\r"
-          expect "abcd"
+          expect "Found project “jo-hanbins-projects/blog”. Link to it? (Y/n)?"
           send "Y\r"
           expect eof
           EOF
@@ -74,15 +74,15 @@ jobs:
         run: |
           expect << EOF
           spawn vercel --prod --token $VERCEL_TOKEN
-          expect "Set up and deploy"
+          expect "Set up and deploy “~/work/blog/blog”? (Y/n)"
           send "Y\r"
-          expect "abcd"
+          expect "Which scope do you want to deploy to? (Use arrow keys)"
           send "\r"
-          expect "abcd"
+          expect "Found project “jo-hanbins-projects/blog”. Link to it? (Y/n)"
           send "n\r"
-          expect "abcd"
+          expect "Link to different existing project? (Y/n)?"
           send "Y\r"
-          expect "abcd"
+          expect "What’s the name of your existing project?"
           send "blog-lab\r"
           expect eof
           EOF
