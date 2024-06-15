@@ -27,7 +27,7 @@ jobs:
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          vercel --prod --token $VERCEL_TOKEN --scope whgksqls9999/blog
+          vercel --prod --token $VERCEL_TOKEN
           
   deploy-lab:
     runs-on: ubuntu-latest
@@ -52,4 +52,4 @@ jobs:
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          vercel --prod --token $VERCEL_TOKEN --scope whgksqls9999/blog-lab
+          vercel --prod --token $VERCEL_TOKEN
