@@ -26,8 +26,9 @@ jobs:
       - name: Deploy Blog if changed
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_SCOPE: ${{ secrets.VERCEL_PROJECTID_BLOG }}
         run: |
-          vercel --prod --token $VERCEL_TOKEN --yes
+          vercel --prod --token $VERCEL_TOKEN --yes --scpoe $VERCEL_SCOPE
           
   deploy-lab:
     runs-on: ubuntu-latest
@@ -51,5 +52,6 @@ jobs:
       - name: Deploy Lab if changed
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_SCOPE: ${{ secrets.VERCEL_PROJECTID_LAB }}
         run: |
-          vercel --prod --token $VERCEL_TOKEN --yes
+          vercel --prod --token $VERCEL_TOKEN --yes --scpoe $VERCEL_SCOPE
