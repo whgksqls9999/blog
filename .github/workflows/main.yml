@@ -6,12 +6,6 @@ on:
       - main
 
 jobs:
-  install-vercel-cli:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install Vercel CLI
-        run: npm install -g vercel
-
   deploy-blog:
     runs-on: ubuntu-latest
     steps:
