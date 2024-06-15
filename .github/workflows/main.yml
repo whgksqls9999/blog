@@ -1,11 +1,14 @@
 name: Deploy on Push to Main
+
 on:
   push:
     branches:
       - main
+
 jobs:
   deploy-blog:
     runs-on: ubuntu-latest
+
     steps:
       - name: Install expect
         run: |
@@ -18,11 +21,11 @@ jobs:
       - name: Determine changes
         id: determine_changes
         run: |
-          changed_files="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
-          echo "::set-output name=changed_files::$changed_files"
+          changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          echo "changed_files=$changed_files" >> $GITHUB_ENV
           
       - name: Build Blog
-        if: ${{ contains(steps.determine_changes.outputs.changed_files, 'blog/') }}
+        if: ${{ contains(env.changed_files, 'blog/') }}
         working-directory: apps/blog
         run: |
           pnpm install
@@ -46,6 +49,7 @@ jobs:
         
   deploy-lab:
     runs-on: ubuntu-latest
+
     steps:
       - name: Install expect
         run: |
@@ -58,11 +62,11 @@ jobs:
       - name: Determine changes
         id: determine_changes
         run: |
-          changed_files="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
-          echo "::set-output name=changed_files::$changed_files"
+          changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          echo "changed_files=$changed_files" >> $GITHUB_ENV
           
       - name: Build lab
-        if: ${{ contains(steps.determine_changes.outputs.changed_files, 'lab/') }}
+        if: ${{ contains(env.changed_files, 'lab/') }}
         working-directory: apps/lab
         run: |
           pnpm install
