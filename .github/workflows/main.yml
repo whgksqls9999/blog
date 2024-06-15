@@ -24,12 +24,11 @@ jobs:
           pnpm build
           
       - name: Deploy Blog if changed
-        working-directory: apps/blog
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_SCOPE: ${{ secrets.VERCEL_PROJECTID_BLOG }}
         run: |
-          vercel --prod --token $VERCEL_TOKEN --yes
+          vercel --prod --token $VERCEL_TOKEN --yes -p VERCEL_SCPOE
           
   deploy-lab:
     runs-on: ubuntu-latest
@@ -51,9 +50,8 @@ jobs:
           pnpm build
       
       - name: Deploy Lab if changed
-        working-directory: apps/lab
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_SCOPE: ${{ secrets.VERCEL_PROJECTID_LAB }}
         run: |
-          vercel --prod --token $VERCEL_TOKEN --yes
+          vercel --prod --token $VERCEL_TOKEN --yes -p VERCEL_SCPOE
