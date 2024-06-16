@@ -19,28 +19,28 @@ jobs:
         id: determine_changes
         run: |
           changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
-          echo "changed_files=$changed_files" >> $GITHUB_ENV
+          echo "::set-output name=changed_files::${changed_files}"
 
       - name: Install expect
-        if: ${{ contains(env.changed_files, 'apps/blog/') }}
+        if: ${{ contains(steps.determine_changes.outputs.changed_files, 'apps/blog/') }}
         run: |
           sudo apt-get update
           sudo apt-get install expect
 
       - name: Install pnpm
-        if: ${{ contains(env.changed_files, 'apps/blog/') }}
+        if: ${{ contains(steps.determine_changes.outputs.changed_files, 'apps/blog/') }}
         run: |
           npm install -g pnpm
           
       - name: Build Blog
-        if: ${{ contains(env.changed_files, 'apps/blog/') }}
+        if: ${{ contains(steps.determine_changes.outputs.changed_files, 'apps/blog/') }}
         working-directory: apps/blog
         run: |
           pnpm install
           npx turbo run build
           
       - name: Deploy Blog if changed
-        if: ${{ contains(env.changed_files, 'apps/blog/') }}
+        if: ${{ contains(steps.determine_changes.outputs.changed_files, 'apps/blog/') }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -68,28 +68,28 @@ jobs:
         id: determine_changes
         run: |
           changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
-          echo "changed_files=$changed_files" >> $GITHUB_ENV
+          echo "::set-output name=changed_files::${changed_files}"
 
       - name: Install expect
-        if: ${{ contains(env.changed_files, 'apps/lab/') }}
+        if: ${{ contains(steps.determine_changes.outputs.changed_files, 'apps/lab/') }}
         run: |
           sudo apt-get update
           sudo apt-get install expect
 
       - name: Install pnpm
-        if: ${{ contains(env.changed_files, 'apps/lab/') }}
+        if: ${{ contains(steps.determine_changes.outputs.changed_files, 'apps/lab/') }}
         run: |
           pnpm install
           npm install -g pnpm
           
       - name: Build lab
-        if: ${{ contains(env.changed_files, 'apps/lab/') }}
+        if: ${{ contains(steps.determine_changes.outputs.changed_files, 'apps/lab/') }}
         working-directory: apps/lab
         run: |
           npx turbo run build
       
       - name: Deploy Lab if changed
-        if: ${{ contains(env.changed_files, 'apps/lab/') }}
+        if: ${{ contains(steps.determine_changes.outputs.changed_files, 'apps/lab/') }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
