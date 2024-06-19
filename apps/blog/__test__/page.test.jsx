@@ -1,13 +1,14 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+
 import Page from '../app/page';
 
-describe('Page', () => {
-  it('renders a heading', () => {
+describe('Page 테스트', () => {
+  it('Page 컴포넌트 테스트', () => {
     render(<Page />);
 
-    const heading = screen.getByRole('heading', { level: 1 });
+    const divElement = screen.getByText('Blog');
 
-    expect(heading).toBeInTheDocument();
+    expect(divElement).toBeInTheDocument();
   });
 });
