@@ -5,7 +5,8 @@
   "exports": {
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    "./code": "./src/code.tsx",
+    "./Header": "./src/Header.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -22,6 +23,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-storybook": "^0.8.0",
     "react": "19.0.0-rc-f994737d14-20240522",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "tailwindcss": "^3.4.1"
   }
 }
