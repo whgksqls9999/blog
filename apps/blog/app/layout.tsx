@@ -28,7 +28,7 @@ const gmarketSansLight = localFont({
 
 export const metadata: Metadata = {
   title: `BIN's BIN`,
-  description: 'BIN about something',
+  description: 'BIN about SOMETHING',
 };
 
 export default function RootLayout({
