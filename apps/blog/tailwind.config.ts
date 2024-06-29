@@ -11,6 +11,10 @@ const config: Config = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        'light-pink': 'var(--light-pink)',
+        'light-red': 'var(--light-red)',
+        'light-green': 'var(--light-green)',
+        'light-sky': 'var(--light-sky)',
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
@@ -18,6 +22,14 @@ const config: Config = {
         gmarket_bold: ['var(--font-gmarket-sans-bold)'],
         gmarket_medium: ['var(--font-gmarket-sans-medium)'],
         gmarket_light: ['var(--font-gmarket-sans-light)'],
+      },
+      flexGrow: {
+        '0': '0',
+        '1': '1',
+        '2': '2',
+        '3': '3',
+        '4': '4',
+        '5': '5',
       },
     },
   },
