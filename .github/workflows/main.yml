@@ -64,6 +64,7 @@ jobs:
         run: |
           changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
           changed_files_csv=$(echo "$changed_files" | tr '\n' ',')
+          echo "Changed files: $changed_files_csv"
           echo "changed_files=$changed_files_csv" >> $GITHUB_ENV
       - name: Install expect
         if: ${{ contains(env.changed_files, 'apps/lab/') }}
