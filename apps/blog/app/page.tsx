@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { MainButton } from '@repo/ui';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
         <div className="flex gap-4 flex-1">
           <div className="grid grid-rows flex-1 w-80 gap-4">
             <MainButton backgroundColor="light-pink" rowSpan={7}>
-              PROFILE
+              <Link href="profile">PROFILE</Link>
             </MainButton>
             <MainButton backgroundColor="light-red" rowSpan={5}>
               BOARD
