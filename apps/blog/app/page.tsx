@@ -15,7 +15,7 @@ export default function Home() {
               <Link href="profile">PROFILE</Link>
             </MainButton>
             <MainButton backgroundColor="light-red" rowSpan={5}>
-              BOARD
+              <Link href="board">BOARD</Link>
             </MainButton>
           </div>
           <div className="grid grid-rows flex-1 w-80 gap-4">
@@ -23,7 +23,7 @@ export default function Home() {
               LOGIN
             </MainButton>
             <MainButton backgroundColor="light-sky" rowSpan={9}>
-              LAB
+              <Link href="lab">LAB</Link>
             </MainButton>
           </div>
         </div>
